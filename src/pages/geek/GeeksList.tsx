@@ -28,7 +28,7 @@ const GeeksList: React.FC = () => {
 
   useEffect(() => {
     search();
-  }, [history.location.pathname]);
+  }, [geeks]);
 
   const search = async () => {
     const geeks = await getGeekList();

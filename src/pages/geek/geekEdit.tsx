@@ -39,15 +39,26 @@ const GeekEdit: React.FC = () => {
   } = useForm();
 
   useEffect(() => {
-    if (id !== "new") {
-      search();
-    }
+    
+    search();
     getCategories();
-  }, [history.location.pathname]);
+       
+    
+   
+  }, []);
 
   const search = async () => {
+    if (id != "new") {
+      console.log(id)
     let geek = await searchGeekById(id);
     setGeek(geek);
+    }
+    else if(id === "new"){
+      console.log(id)
+      setGeek({});
+    }
+    
+    
   };
 
   const getCategories = async () => {
@@ -57,7 +68,7 @@ const GeekEdit: React.FC = () => {
 
   const save = () => {
     saveGeek(geek);
-    history.push("/page/Geeks");
+    history.goBack();
   };
 
   const onSubmit = () => {
@@ -102,12 +113,12 @@ const GeekEdit: React.FC = () => {
                   {id === "new" && errors.nombre?.type === "required" && (
                     <p className="text-danger">El nombre es requerido</p>
                   )}
-                  {id === "new" && errors.nombre?.type === "minlength" && (
+                  {id === "new" && errors.nombre?.type === "minLength" && (
                     <p className="text-danger">
                       El nombre debe tener al menos 3 caracteres
                     </p>
                   )}
-                  {id === "new" && errors.nombre?.type === "maxlength" && (
+                  {id === "new" && errors.nombre?.type === "maxLength" && (
                     <p className="text-danger">
                       El nombre debe tener menos de 30 caracteres
                     </p>
@@ -269,7 +280,7 @@ const GeekEdit: React.FC = () => {
                 slot="start"
                 size="default"
                 onClick={() => {
-                  history.push("/page/geeks");
+                  history.goBack();
                 }}
               >
                 <IonIcon icon={backspaceOutline} /> Cancel
