@@ -1,0 +1,7 @@
+{
+  "name": "geekStore",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
