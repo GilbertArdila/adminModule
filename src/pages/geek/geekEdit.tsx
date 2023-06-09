@@ -43,7 +43,7 @@ const GeekEdit: React.FC = () => {
       search();
     }
     getCategories();
-  }, []);
+  }, [history.location.pathname]);
 
   const search = async () => {
     let geek = await searchGeekById(id);
